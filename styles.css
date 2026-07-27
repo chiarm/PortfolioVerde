@@ -1184,3 +1184,19 @@ code, .terminal-title, .project-preview code {
   font-weight: 800 !important;
   color: var(--green-200) !important;
 }
+html {
+  scroll-behavior: smooth !important;
+}
+
+/* Evita tirones en navegadores basados en Chromium */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
