@@ -1,17 +1,15 @@
-/* ==========================================
-   SMOOTH SCROLL SIN PAUSAS NI RETARDOS
-   ========================================== */
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof Lenis !== 'undefined') {
     const lenis = new Lenis({
-      lerp: 0.8,           // Un valor más alto hace que responda al instante (puedes subirlo a 0.25 si lo quieres más inmediato)
-      wheelMultiplier: 1,  
+      lerp: 0.2,
+      wheelMultiplier: 1,
       smoothWheel: true,
-      sync: true,          // Fuerza la sincronización inmediata con el hilo principal del navegador (elimina la pausa)
+      sync: true,
       touchMultiplier: 2,
       infinite: false,
     });
 
+    // Bucle optimizado con control de tiempo nativo
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);

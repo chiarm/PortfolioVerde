@@ -105,6 +105,8 @@ code, .terminal-title, .project-preview code {
    NAVEGACIÓN (HEADER) Y ACCIONES
    ========================================== */
 .header {
+  transform: translateZ(0); /* Fuerza aceleración por hardware */
+  will-change: transform;
   position: fixed;
   top: 0;
   left: 0;
@@ -1094,4 +1096,17 @@ html {
 body {
   overscroll-behavior: none;
   -webkit-font-smoothing: antialiased;
+}
+/* Forzar aceleración por hardware en la capa de scroll */
+html.lenis, html.lenis body {
+  overscroll-behavior: none;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+/* Evitar que el fondo animado o los blurs consuman recursos durante el movimiento */
+html.lenis-scrolling * {
+  pointer-events: none; /* Desactiva eventos de ratón mientras se hace scroll para ganar fluidez */
 }
