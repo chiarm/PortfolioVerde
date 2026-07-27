@@ -1,33 +1,29 @@
 /* ==========================================
-   STYLES-LIGHT.CSS (MODO DÍA - ALTO CONTRASTE)
+   STYLES-LIGHT.CSS (CLON ESTRUCTURAL EXACTO DEL MODO OSCURO)
    ========================================== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  /* Paleta de verdes adaptada a fondo claro */
+  /* Paleta de Verdes Clara */
   --green-main: #0e850b;
   --green-hover: #0b6909;
-  --green-tag-text: #084d06;
-  --green-tag-bg: #e3f5e2;
-
-  /* Superficies y Fondos */
-  --bg-primary: #f5f8f5;
-  --bg-card: #ffffff;
-  --bg-subtle: #ebf1ec;
-
-  /* Tipografía de Alto Contraste */
+  
+  /* Esquema del sitio Claro */
+  --bg-primary: #f5f8f5;         
+  --bg-secondary: #ffffff;       
+  --bg-darker: #ebf1ec;          
+  
   --text-primary: #0a120b;
-  --text-body: #253326;
-  --text-muted: #4a5c4c;
-
-  /* Bordes y Sombras */
+  --text-muted: #4a5c4c;        
   --border-color: #cbd7cc;
-  --border-focus: #0e850b;
-  --shadow-sm: 0 1px 3px rgba(10, 18, 11, 0.05);
-  --shadow-card: 0 4px 12px rgba(10, 18, 11, 0.07);
-
-  /* Fuentes y Estructura */
-  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  --accent-primary: var(--green-main);
+  --accent-hover: var(--green-hover);
+  --accent-light: #0e850b;
+  --accent-bg: #e3f5e2;
+  --accent-border: #c3d6c4;
+  
+  --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   --font-code: 'JetBrains Mono', monospace;
   --max-width: 1150px;
   --header-height: 4rem;
@@ -46,18 +42,18 @@ html {
 
 body {
   background-color: var(--bg-primary);
-  color: var(--text-body);
-  font-family: var(--font-main);
-  font-size: 1rem;
+  color: var(--text-primary);
+  font-family: var(--font-family);
   line-height: 1.65;
-  letter-spacing: -0.011em;
+  letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
 ::selection {
-  background-color: var(--green-tag-bg);
-  color: var(--green-tag-text);
+  background-color: var(--accent-bg);
+  color: var(--green-main);
 }
 
 a {
@@ -65,12 +61,25 @@ a {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4 {
   color: var(--text-primary);
+  letter-spacing: -0.025em;
+  line-height: 1.25;
 }
 
-p, span, li, div {
-  color: var(--text-body);
+h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; }
+h3 { font-size: 1.15rem; font-weight: 600; }
+
+p, .hero-description, .project-desc, .section-subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 65ch;
+}
+
+code, .terminal-title, .project-preview code {
+  font-family: var(--font-code);
+  font-size: 0.85rem;
 }
 
 @media (pointer: fine) {
@@ -79,6 +88,7 @@ p, span, li, div {
   }
 }
 
+/* Canvas de Fondo */
 #bg-canvas {
   position: fixed;
   top: 0;
@@ -92,7 +102,7 @@ p, span, li, div {
 }
 
 /* ==========================================
-   HEADER Y NAVEGACIÓN
+   NAVEGACIÓN (HEADER) Y ACCIONES
    ========================================== */
 .header {
   position: fixed;
@@ -100,7 +110,7 @@ p, span, li, div {
   left: 0;
   width: 100%;
   height: var(--header-height);
-  background: rgba(245, 248, 245, 0.88);
+  background-color: rgba(245, 248, 245, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-color);
@@ -119,8 +129,8 @@ p, span, li, div {
 
 .logo {
   font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--text-primary) !important;
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
 .nav-menu {
@@ -130,128 +140,94 @@ p, span, li, div {
 }
 
 .nav-link {
-  color: var(--text-body) !important;
-  font-weight: 600;
-  font-size: 0.925rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
   transition: color 0.2s ease;
 }
 
 .nav-link:hover {
-  color: var(--green-main) !important;
+  color: var(--green-main);
 }
 
 .header-actions {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  height: 100%;
 }
 
 .bg-toggle-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 0.4rem;
-  padding: 0.6rem 0.85rem;
+  padding: 0.55rem 0.85rem;
   font-size: 0.8rem;
-  font-weight: 700;
-  height: 2.5rem;
-  box-sizing: border-box;
-  color: var(--green-main) !important;
-  background-color: var(--bg-card);
-  border: 1.5px solid var(--green-main);
+  font-weight: 600;
+  color: var(--green-main);
+  background: var(--bg-secondary);
+  border: 1px solid var(--green-main);
   border-radius: 0.5rem;
   transition: all 0.2s ease;
   cursor: pointer;
-}
-
-.bg-toggle-btn span {
-  color: var(--green-main) !important;
+  height: 100%;
 }
 
 .bg-toggle-btn:hover {
-  background-color: var(--green-tag-bg);
+  background: var(--accent-bg);
   border-color: var(--green-hover);
-  color: var(--green-hover) !important;
-}
-
-.bg-toggle-btn:hover span {
-  color: var(--green-hover) !important;
+  box-shadow: 0 0 12px rgba(14, 133, 11, 0.15);
 }
 
 .bg-toggle-btn.disabled {
-  color: var(--text-muted) !important;
+  color: var(--text-muted);
   border-color: var(--border-color);
-  background-color: transparent;
-  opacity: 0.65;
-  box-shadow: none;
-}
-
-.bg-toggle-btn.disabled span {
-  color: var(--text-muted) !important;
+  background: transparent;
+  opacity: 0.75;
 }
 
 /* ==========================================
-   BOTONES GENERALES (UNIFICADOS)
+   BOTONES GENERALES
    ========================================== */
-.btn, 
-.btn-primary, 
-.btn-secondary {
-  box-sizing: border-box;
+.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  height: 2.5rem;
   padding: 0.6rem 1.25rem;
   font-size: 0.875rem;
   font-weight: 600;
-  line-height: 1;
   border-radius: 0.5rem;
   transition: all 0.2s ease;
   cursor: pointer;
-  text-decoration: none;
-  border: 1px solid transparent;
+  border: none;
 }
 
 .btn-primary {
   background-color: var(--green-main);
-  color: #ffffff !important;
-  border-color: var(--green-main);
-}
-
-.btn-primary span, .btn-primary svg {
-  color: #ffffff !important;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(14, 133, 11, 0.25);
 }
 
 .btn-primary:hover {
   background-color: var(--green-hover);
-  border-color: var(--green-hover);
-  box-shadow: 0 4px 14px rgba(14, 133, 11, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(14, 133, 11, 0.4);
 }
 
 .btn-secondary {
-  background-color: var(--bg-card);
-  color: var(--text-primary) !important;
-  border-color: var(--border-color);
-}
-
-.btn-secondary span {
-  color: var(--text-primary) !important;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
 }
 
 .btn-secondary:hover {
   border-color: var(--green-main);
-  color: var(--green-main) !important;
-  background-color: var(--bg-subtle);
-}
-
-.btn-secondary:hover span {
-  color: var(--green-main) !important;
+  background-color: var(--bg-darker);
+  color: var(--green-main);
 }
 
 /* ==========================================
-   SECCIONES Y HERO (CENTRADO)
+   SECCIONES GENERALES
    ========================================== */
 main {
   padding-top: var(--header-height);
@@ -268,20 +244,9 @@ main {
   margin-bottom: 2.5rem;
 }
 
-.section-title {
-  font-size: clamp(1.6rem, 3.5vw, 2.1rem);
-  font-weight: 800;
-  color: var(--text-primary) !important;
-  letter-spacing: -0.02em;
-}
-
-.section-subtitle {
-  color: var(--text-body) !important;
-  margin-top: 0.3rem;
-  font-size: 1rem;
-}
-
-/* HERO SECTION CENTRADO */
+/* ==========================================
+   HERO SECTION (CENTRADO)
+   ========================================== */
 .hero-section {
   border-top: none;
   padding-top: 5rem;
@@ -297,26 +262,25 @@ main {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  max-width: 820px;
+  max-width: 800px;
   margin: 0 auto;
+  padding-top: 5rem;
 }
 
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.4rem 0.9rem;
+  padding: 0.35rem 0.85rem;
   border-radius: 9999px;
-  background-color: var(--green-tag-bg);
-  border: 1px solid var(--border-color);
-  color: var(--green-tag-text) !important;
-  font-size: 0.8rem;
-  font-weight: 700;
+  background-color: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  color: var(--green-main);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   margin-bottom: 1.5rem;
-}
-
-.badge span {
-  color: var(--green-tag-text) !important;
 }
 
 .badge-dot {
@@ -324,78 +288,295 @@ main {
   height: 0.5rem;
   border-radius: 50%;
   background-color: var(--green-main);
+  box-shadow: 0 0 8px var(--green-main);
 }
 
 .hero-title {
-  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
   font-weight: 800;
   line-height: 1.15;
-  color: var(--text-primary) !important;
-  letter-spacing: -0.03em;
+  max-width: 48rem;
+  color: var(--text-primary);
 }
 
 .hero-description {
   margin-top: 1.25rem;
-  font-size: 1.05rem;
-  color: var(--text-body) !important;
-  font-weight: 450;
-  max-width: 58ch;
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  color: var(--text-muted);
+  max-width: 42rem;
   line-height: 1.7;
   margin-left: auto;
   margin-right: auto;
 }
 
+.hero-centered .hero-description {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 58ch;
+}
+
+.hero-description strong {
+  color: var(--green-main);
+}
+
 .hero-actions {
+  margin-top: 2rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-top: 2rem;
   width: 100%;
 }
 
 /* ==========================================
-   SECCIÓN EDUCACIÓN Y EXPERIENCIA
-   ========================================== */
-.education-section, 
-.education-card, 
-.experience-card, 
-.education-item,
-#educacion,
-#experiencia {
-  color: var(--text-body);
-}
-
-.education-section h1, .education-section h2, .education-section h3, .education-section h4,
-.education-card h1, .education-card h2, .education-card h3, .education-card h4,
-.education-title, .education-subtitle, .degree-title, .institution-name,
-#educacion h1, #educacion h2, #educacion h3, #educacion h4 {
-  color: var(--text-primary) !important;
-}
-
-.education-section p, .education-section span, .education-section li,
-.education-card p, .education-card span, .education-card li,
-.education-description, .education-dates,
-#educacion p, #educacion span, #educacion li {
-  color: var(--text-body) !important;
-}
-
-/* ==========================================
-   TARJETAS Y BENTO GRIDS
+   PROYECTOS
    ========================================== */
 .projects-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.75rem;
+  gap: 2rem;
 }
 
+.project-card {
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.project-card:hover {
+  border-color: var(--green-main) !important;
+  transform: translateY(-6px);
+  box-shadow: 0 12px 35px -10px rgba(14, 133, 11, 0.15), 0 0 20px rgba(14, 133, 11, 0.05);
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--green-main);
+  transition: width 0.4s ease;
+}
+
+.project-card:hover::before {
+  width: 100%;
+}
+
+.project-preview {
+  height: 9.5rem;
+  background: #f0f5f1 !important;
+  color: var(--green-main) !important;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border-color) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-code);
+  font-size: 0.875rem;
+  padding: 1rem;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.project-card:hover .project-preview {
+  background: #e2ede1 !important;
+  color: var(--green-hover) !important;
+  letter-spacing: 0.08em;
+}
+
+.project-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.project-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.project-card:hover .project-title {
+  color: var(--green-main);
+}
+
+.project-links {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.project-links a {
+  color: var(--text-muted);
+  display: inline-block;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.project-links a:hover {
+  transform: scale(1.25) rotate(5deg);
+  color: var(--green-main) !important;
+}
+
+.project-desc {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.project-techs {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-tag {
+  background: #f0f5f1 !important;
+  color: var(--green-main) !important;
+  border: 1px solid #c3d6c4 !important;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.375rem;
+  display: inline-block;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tech-tag:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: var(--green-main) !important;
+  border-color: var(--green-main) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 8px rgba(14, 133, 11, 0.2);
+}
+
+/* ==========================================
+   HABILIDADES (SKILLS)
+   ========================================== */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
 }
 
+.skill-card {
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.skill-card::before {
+  display: none !important;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  background: var(--bg-secondary) !important;
+  border-color: var(--green-main) !important;
+  box-shadow: 0 8px 25px -5px rgba(14, 133, 11, 0.15);
+}
+
+.skill-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #f0f5f1 !important;
+  border: 1px solid #c3d6c4 !important;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green-main) !important;
+  margin-bottom: 1rem;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.skill-card:hover .skill-icon {
+  transform: scale(1.1) rotate(-5deg);
+  background: var(--accent-bg) !important;
+  border-color: var(--green-main) !important;
+  box-shadow: 0 0 15px rgba(14, 133, 11, 0.15);
+  color: var(--green-main) !important;
+}
+
+.skill-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.skill-card:hover .skill-title {
+  color: var(--green-main);
+}
+
+.skill-list {
+  list-style: none;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skill-list li {
+  position: relative;
+  padding-left: 1.1rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+  cursor: default;
+}
+
+.skill-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--text-muted);
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-list li:hover {
+  transform: translateX(5px);
+  color: var(--green-main) !important;
+}
+
+.skill-list li:hover::before {
+  background-color: var(--green-main);
+  transform: translateY(-50%) scale(1.4);
+  box-shadow: 0 0 8px var(--green-main);
+}
+
+/* ==========================================
+   SOBRE MÍ Y EXPERIENCIA
+   ========================================== */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -403,84 +584,112 @@ main {
   align-items: flex-start;
 }
 
-.project-card, .skill-card, .about-box, .education-card {
-  background: var(--bg-card);
+.about-text p {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.about-text strong {
+  color: var(--green-main);
+}
+
+.about-box {
+  padding: 1.5rem;
+  background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 0.75rem;
-  box-shadow: var(--shadow-card);
-  transition: all 0.25s ease;
+  position: relative;
   overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.project-card:hover, .skill-card:hover, .education-card:hover {
+.about-box:hover {
+  transform: translateY(-5px);
   border-color: var(--green-main);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(14, 133, 11, 0.12);
+  box-shadow: 0 10px 25px -10px rgba(14, 133, 11, 0.15);
 }
 
-.project-preview {
-  background: var(--bg-subtle);
-  color: var(--green-tag-text) !important;
-  border-bottom: 1px solid var(--border-color);
-  font-family: var(--font-code);
+.about-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--green-main);
+  transition: width 0.4s ease;
+}
+
+.about-box:hover::before {
+  width: 100%;
+}
+
+.about-box-title {
+  font-size: 1.125rem;
   font-weight: 600;
-  font-size: 0.875rem;
-  height: 9.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  text-align: center;
-}
-
-.project-body, .skill-card, .about-box {
-  padding: 1.5rem;
-}
-
-.project-title, .skill-title, .about-box-title {
-  color: var(--text-primary) !important;
-  font-weight: 700;
-}
-
-.project-desc, .skill-list, .philosophy-list, .about-text p {
-  color: var(--text-body) !important;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-.tech-tag {
-  display: inline-block;
-  background: var(--green-tag-bg);
-  color: var(--green-tag-text) !important;
-  border: 1px solid rgba(14, 133, 11, 0.25);
-  font-weight: 700;
-  font-size: 0.8rem;
-  padding: 0.25rem 0.6rem;
-  border-radius: 0.375rem;
-  margin-right: 0.35rem;
-  margin-top: 0.5rem;
-}
-
-.skill-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  background: var(--green-tag-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--green-main) !important;
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-primary);
+}
+
+.about-box-title i, .about-box-title svg {
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.about-box:hover .about-box-title i, .about-box:hover .about-box-title svg {
+  transform: scale(1.15) rotate(-6deg);
+  color: var(--green-main);
+}
+
+.philosophy-list {
+  list-style: none;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.philosophy-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.25rem 0.4rem;
+  border-radius: 0.375rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.philosophy-list li:hover {
+  background: var(--accent-bg);
+  transform: translateX(6px);
 }
 
 .bullet {
-  color: var(--green-main) !important;
+  color: var(--green-main);
   font-weight: bold;
+  display: inline-block;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.philosophy-list li:hover .bullet {
+  transform: scale(1.4);
+  color: var(--green-main);
+}
+
+.philosophy-list li strong {
+  transition: color 0.2s ease;
+}
+
+.philosophy-list li:hover strong {
+  color: var(--green-main);
 }
 
 /* ==========================================
-   SECCIÓN CONTACTO
+   CONTACTO
    ========================================== */
 .contact-container {
   max-width: 36rem;
@@ -494,17 +703,10 @@ main {
   gap: 1rem;
   margin-top: 2rem;
   justify-content: center;
-  align-items: center;
-}
-
-@media (min-width: 640px) {
-  .contact-actions {
-    flex-direction: row;
-  }
 }
 
 /* ==========================================
-   BOTÓN FLOTANTE PARA CAMBIAR TEMA
+   BOTÓN CAMBIO TEMA
    ========================================== */
 .theme-toggle-btn {
   position: fixed;
@@ -514,16 +716,16 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3.25rem;
-  height: 3.25rem;
+  width: 3.2rem;
+  height: 3.2rem;
   border-radius: 50%;
-  background-color: var(--bg-card);
-  color: var(--text-primary) !important;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
   border: 1px solid var(--border-color);
   font-size: 1.3rem;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(10, 18, 11, 0.15);
-  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .theme-toggle-btn:hover {
@@ -536,7 +738,7 @@ main {
    ========================================== */
 .footer {
   border-top: 1px solid var(--border-color);
-  background-color: var(--bg-subtle);
+  background-color: var(--bg-darker);
   padding: 2rem 0;
 }
 
@@ -549,7 +751,7 @@ main {
   align-items: center;
   gap: 1rem;
   font-size: 0.875rem;
-  color: var(--text-muted) !important;
+  color: var(--text-muted);
   text-align: center;
 }
 
@@ -558,16 +760,12 @@ main {
   gap: 1.5rem;
 }
 
-.footer-links a {
-  color: var(--text-body) !important;
-}
-
 .footer-links a:hover {
-  color: var(--green-main) !important;
+  color: var(--green-main);
 }
 
 /* ==========================================
-   CURSOR PERSONALIZADO EN MODO DÍA
+   CURSOR NEÓN PERSONALIZADO
    ========================================== */
 #custom-cursor {
   position: fixed;
@@ -578,10 +776,10 @@ main {
   background-color: var(--green-main);
   border-radius: 50%;
   pointer-events: none;
-  z-index: 99999;
+  z-index: 9999;
   transform: translate(-50%, -50%);
   transition: width 0.2s, height 0.2s, background-color 0.2s;
-  box-shadow: 0 0 10px rgba(14, 133, 11, 0.4);
+  box-shadow: 0 0 10px var(--green-main);
 }
 
 #cursor-blur {
@@ -593,16 +791,26 @@ main {
   background: rgba(14, 133, 11, 0.25);
   border-radius: 50%;
   pointer-events: none;
-  z-index: 99998;
+  z-index: 9998;
   filter: blur(8px);
   transform: translate(-50%, -50%);
   transition: transform 0.08s ease-out;
+}
+
+@media (max-width: 768px), (pointer: coarse) {
+  #custom-cursor, #cursor-blur {
+    display: none !important;
+  }
 }
 
 /* ==========================================
    MEDIA QUERIES (RESPONSIVE)
    ========================================== */
 @media (min-width: 640px) {
+  .contact-actions {
+    flex-direction: row;
+  }
+  
   .footer-container {
     flex-direction: row;
     justify-content: space-between;
@@ -620,298 +828,256 @@ main {
   .nav-menu {
     display: none;
   }
+  
+  .hero-actions {
+    flex-direction: column;
+  }
+  
+  .hero-actions .btn {
+    width: 100%;
+  }
 
   .bg-toggle-btn span {
     display: none;
   }
 }
 
-@media (max-width: 768px), (pointer: coarse) {
-  #custom-cursor, #cursor-blur {
-    display: none !important;
-  }
-}
 /* ==========================================
-   ANIMACIONES MODO DÍA (.about-box)
+   UNIFICACIÓN EXACTA DE TAMAÑOS
    ========================================== */
-
-.about-box {
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-              box-shadow 0.3s ease, 
-              border-color 0.3s ease;
+.about-box-title {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  margin-bottom: 1rem !important;
 }
 
-.about-box:hover {
-  transform: translateY(-4px);
-  border-color: var(--green-main);
-  box-shadow: 0 8px 24px rgba(14, 133, 11, 0.12);
-}
-
-.about-box::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 3px;
-  background: var(--green-main);
-  transition: width 0.4s ease;
-}
-
-.about-box:hover::before {
-  width: 100%;
-}
-
-.about-box-title i,
-.about-box-title svg {
-  display: inline-block;
-  transition: transform 0.3s ease;
-}
-
-.about-box:hover .about-box-title i,
-.about-box:hover .about-box-title svg {
-  transform: scale(1.15) rotate(-6deg);
-}
-
-.philosophy-list li {
-  padding: 0.25rem 0.4rem;
-  border-radius: 0.375rem;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.philosophy-list li:hover {
-  background-color: var(--green-tag-bg);
-  transform: translateX(6px);
-}
-
-.philosophy-list li .bullet {
-  display: inline-block;
-  transition: transform 0.25s ease;
-}
-
-.philosophy-list li:hover .bullet {
-  transform: scale(1.3);
-}
-/* ==========================================
-   PROYECTOS: MODO DÍA (DISEÑO LIMPIO & ELEGANTE)
-   ========================================== */
-
-/* 1. Tarjeta base y transición */
-.project-card {
-  position: relative;
-  background: #ffffff !important;
-  border: 1px solid #d4e0d5 !important;
-  border-radius: 0.85rem;
-  overflow: hidden;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.3s ease;
-}
-
-/* Hover: Elevación suave estilo SaaS con sombra física multinivel */
-.project-card:hover {
-  transform: translateY(-6px);
-  border-color: #0e850b !important;
-  box-shadow: 0 12px 28px -6px rgba(14, 133, 11, 0.12),
-              0 4px 12px -2px rgba(10, 18, 11, 0.04);
-}
-
-/* Accent bar: Línea superior fina en verde corporativo */
-.project-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 3px;
-  background-color: #0e850b;
-  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 10;
-}
-
-.project-card:hover::before {
-  width: 100%;
-}
-
-/* 2. Vista previa / Header estilo Terminal Claro */
-.project-preview {
-  background: #f0f5f1 !important;
-  color: #0e850b !important;
-  border-bottom: 1px solid #d4e0d5 !important;
-  font-family: var(--font-code);
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.01em;
-  transition: background-color 0.3s ease, color 0.3s ease, letter-spacing 0.3s ease;
-}
-
-.project-card:hover .project-preview {
-  background: #e2ede1 !important;
-  color: #0b6909 !important;
-  letter-spacing: 0.04em;
-}
-
-/* 3. Título y Enlaces externos */
-.project-title {
-  color: #0a120b !important;
-  transition: color 0.25s ease;
-}
-
-.project-card:hover .project-title {
-  color: #0e850b !important;
-}
-
-.project-links a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 0.375rem;
-  color: #4a5c4c !important;
-  background-color: transparent;
-  transition: all 0.2s ease;
-}
-
-.project-links a:hover {
-  color: #0e850b !important;
-  background-color: #e3f5e2;
-  transform: translateY(-2px);
-}
-
-/* 4. Etiquetas de Tecnologías (Badges de alto contraste) */
-.tech-tag {
-  display: inline-block;
-  background: #f0f5f1 !important;
-  color: #084d06 !important;
-  border: 1px solid #c3d6c4 !important;
-  font-weight: 600;
-  font-size: 0.775rem;
-  padding: 0.25rem 0.65rem;
-  border-radius: 0.375rem;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Al pasar sobre la tarjeta, las etiquetas ganan un toque más definido */
-.project-card:hover .tech-tag {
-  border-color: #a8caa9 !important;
-  background: #e8f3e7 !important;
-}
-
-/* Hover directo sobre la etiqueta individual: Invierte a verde sólido */
-.tech-tag:hover {
-  background: #0e850b !important;
-  color: #ffffff !important;
-  border-color: #0e850b !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(14, 133, 11, 0.2);
-}
-/* ==========================================
-   COMPETENCIAS TÉCNICAS: MODO DÍA
-   ========================================== */
-
-/* 1. Elevación e iluminación de bordes en verde claro */
-.skill-card {
-  position: relative;
-  background: #ffffff !important;
-  border: 1.5px solid #cbd7cc !important;
-  border-radius: 0.85rem;
-  overflow: hidden;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.3s ease;
-}
-
-/* Ocultar / Desactivar la cortinilla superior */
-.skill-card::before {
-  display: none !important;
-}
-
-/* Hover: Borde verde corporativo limpio y sombra verde sutil */
-.skill-card:hover {
-  transform: translateY(-5px);
-  border-color: #0e850b !important; /* Borde verde completo */
-  box-shadow: 0 8px 25px rgba(14, 133, 11, 0.18);
-}
-
-/* 2. Contenedor del Icono en Modo Día */
-.skill-icon {
-  background: #f0f5f1 !important;
-  border: 1px solid #c3d6c4 !important;
-  color: #0e850b !important;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color 0.3s ease,
-              border-color 0.3s ease;
-}
-
-.skill-card:hover .skill-icon {
-  transform: scale(1.1) rotate(-5deg);
-  background: #e3f5e2 !important;
-  border-color: #0e850b !important;
-}
-
-/* 3. Título de la tarjeta */
-.skill-title {
-  color: #0a120b !important;
-  transition: color 0.25s ease;
-}
-
-.skill-card:hover .skill-title {
-  color: #0e850b !important;
-}
-
-/* 4. Lista de habilidades dinámicas */
-.skill-list li {
-  position: relative;
-  padding-left: 1.1rem;
-  color: #253326 !important;
-  transition: transform 0.2s ease, color 0.2s ease;
-  cursor: default;
-}
-
-.skill-list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background-color: #7a8e7c;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.skill-list li:hover {
-  transform: translateX(5px);
-  color: #0e850b !important;
-  font-weight: 600;
-}
-
-.skill-list li:hover::before {
-  background-color: #0e850b;
-  transform: translateY(-50%) scale(1.5);
-}
-/* ==========================================
-   CORRECCIÓN DE DOBLE PUNTO (MODO DÍA)
-   ========================================== */
-
-/* 1. Ocultar la viñeta por defecto del navegador en las listas */
-.skill-list,
 .philosophy-list {
   list-style: none !important;
   padding-left: 0 !important;
+  margin: 0 !important;
 }
 
-/* 2. Si usas el <span class="bullet">•</span> en el HTML dentro de philosophy-list, 
-      desactivamos el ::before automático para evitar la duplicación */
-.philosophy-list li::before {
-  display: none !important;
+.philosophy-list li {
+  font-size: 0.925rem !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+  padding: 0.25rem 0.4rem !important;
+  margin-bottom: 0.25rem !important;
 }
 
-/* 3. Asegurar que en skill-list solo exista el punto generado por CSS */
+.skill-card {
+  padding: 1.5rem !important;
+  border-radius: 0.85rem !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.skill-icon {
+  width: 2.75rem !important;
+  height: 2.75rem !important;
+  border-radius: 0.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 1rem !important;
+}
+
+.skill-title {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  margin-bottom: 0.85rem !important;
+}
+
+.skill-list {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0 !important;
+}
+
 .skill-list li {
-  list-style-type: none !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  line-height: 1.6 !important;
+  padding-left: 1.1rem !important;
+  margin-bottom: 0.35rem !important;
+}
+
+.skill-list li::before {
+  width: 5px !important;
+  height: 5px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+.project-card {
+  border-radius: 0.85rem !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.project-preview {
+  padding: 1rem 1.25rem !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+}
+
+.project-title {
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.project-description {
+  font-size: 0.875rem !important;
+  font-weight: 400 !important;
+  line-height: 1.55 !important;
+  margin-bottom: 1rem !important;
+}
+
+.tech-tag {
+  font-size: 0.775rem !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  padding: 0.25rem 0.65rem !important;
+  border-radius: 0.375rem !important;
+}
+
+.section-title {
+  font-size: 1.85rem !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.section-subtitle {
+  font-size: 0.95rem !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+}
+/* ==========================================
+   IGUALACIÓN EXACTA HERO (MODO DÍA = MODO NOCHE)
+   ========================================== */
+
+/* 1. BADGE SUPERIOR ("Buscando oportunidad...") */
+.hero-section .badge,
+.hero-centered .badge {
+  font-family: var(--font-family, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif) !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  padding: 0.35rem 0.85rem !important;
+  margin-bottom: 1.5rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+/* 2. TÍTULO ("Adrián Ramos Márquez") */
+.hero-section .hero-title,
+.hero-centered .hero-title {
+  font-family: var(--font-family, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif) !important;
+  font-size: clamp(2.25rem, 6vw, 3.5rem) !important;
+  font-weight: 800 !important; /* Grosor máximo exacto */
+  line-height: 1.15 !important;
+  max-width: 48rem !important;
+  margin: 0 auto !important;
+  letter-spacing: -0.025em !important;
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  color: #0f172a !important; /* Color texto oscuro legibilidad día */
+}
+
+/* 3. SUBTÍTULO / PARÁGRAFO ("Desarrollador Full Stack Jr...") */
+.hero-section .hero-description,
+.hero-centered .hero-description {
+  font-family: var(--font-family, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif) !important;
+  font-size: clamp(1rem, 2.5vw, 1.125rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.7 !important;
+  max-width: 42rem !important; /* Mismo ancho exacto del CSS noche */
+  margin-top: 1.25rem !important;
+  margin-bottom: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+  color: #475569 !important; /* Gris sobrio para modo claro */
+}
+
+/* Negritas del texto interno (Java / Spring Boot, Angular, etc.) */
+.hero-description strong {
+  font-weight: 700 !important;
+  color: #0f172a !important;
+}
+/* ==========================================
+   UNIFICACIÓN DE FUENTE, TAMAÑO Y NEGRITA (HERO)
+   ========================================== */
+
+/* 1. "Buscando oportunidad..." (Fuente en negrita/bold) */
+.hero-section .badge,
+.hero-centered .badge {
+  font-family: var(--font-main, 'Inter', system-ui, sans-serif) !important;
+  font-size: 0.85rem !important;
+  font-weight: 800 !important; /* Negrita pesada (Bold) */
+  line-height: 1 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+
+/* 2. "Adrián Ramos Márquez" (Fuente en negrita/bold y tamaño unificado) */
+.hero-section .hero-title,
+.hero-centered .hero-title {
+  font-family: var(--font-main, 'Inter', system-ui, sans-serif) !important;
+  font-size: clamp(1.75rem, 4vw, 2.5rem) !important; /* Tamaño idéntico al contenido */
+  font-weight: 800 !important; /* Negrita pesada (Bold) */
+  line-height: 1.2 !important;
+  max-width: 52rem !important;
+  margin: 0 auto !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* 3. Contenido Descriptivo (Misma fuente, tamaño exacto al título) */
+.hero-section .hero-description,
+.hero-centered .hero-description {
+  font-family: var(--font-main, 'Inter', system-ui, sans-serif) !important;
+  font-size: clamp(1.75rem, 4vw, 2.5rem) !important; /* Mismo tamaño exacto que .hero-title */
+  font-weight: 400 !important; /* Peso regular para diferenciar lectura si se desea, o 700/800 para negrita */
+  line-height: 1.35 !important;
+  max-width: 52rem !important;
+  margin-top: 1.25rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+/* Destacados internos dentro del texto */
+.hero-description strong {
+  font-weight: 800 !important;
+}
+/* ==========================================
+   AJUSTE DE TAMAÑO EN MODO DÍA (HERO DESCRIPTION)
+   ========================================== */
+
+/* Reduce el tamaño del párrafo descriptivo en el modo claro */
+.hero-section .hero-description,
+.hero-centered .hero-description {
+  font-family: var(--font-main, 'Inter', system-ui, sans-serif) !important;
+  font-size: clamp(1.05rem, 2vw, 1.2rem) !important; /* Tamaño proporcionado para párrafos largos */
+  font-weight: 600 !important; /* Mantiene la nitidez y el grosor de la fuente */
+  line-height: 1.6 !important;
+  max-width: 48rem !important; /* Ancho optimizado para la lectura */
+  margin-top: 1.25rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+  color: #334155 !important; /* Gris oscuro legible */
+}
+
+/* Destacados en negrita pesada dentro del texto */
+.hero-description strong {
+  font-weight: 800 !important;
+  color: #0f172a !important;
 }
