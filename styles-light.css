@@ -1085,15 +1085,13 @@ html {
   scroll-behavior: smooth !important;
 }
 
-/* Evita tirones en navegadores basados en Chromium */
-html.lenis, html.lenis body {
-  height: auto;
+html {
+  /* ESTO ES VITAL: Apaga el smooth nativo para que Lenis no dé tirones */
+  scroll-behavior: auto !important; 
 }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
+/* Optimización para que la tarjeta gráfica (GPU) ayude a renderizar el scroll */
+body {
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
 }

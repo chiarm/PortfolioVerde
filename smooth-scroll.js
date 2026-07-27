@@ -1,19 +1,17 @@
 /* ==========================================
-   SMOOTH SCROLL RÁPIDO Y ÁGIL (LENIS)
+   SMOOTH SCROLL SIN TIRONES (USANDO LERP)
    ========================================== */
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof Lenis !== 'undefined') {
     const lenis = new Lenis({
-      duration: 0.7,       // Respuesta casi inmediata (pasa de 2.2s a 0.7s)
-      easing: (t) => 1 - Math.pow(1 - t, 3), // Desaceleración cúbica ágil
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
+      lerp: 0.15,          // La clave de la velocidad: 0.1 es suave, 0.2 es muy rápido y reactivo
       smoothWheel: true,
-      wheelMultiplier: 1.1, // Incrementa el recorrido por cada 'click' de la rueda
-      touchMultiplier: 1.5,
+      wheelMultiplier: 1,  // Multiplicador neutro para evitar saltos
+      touchMultiplier: 2,
       infinite: false,
     });
 
+    // Sincronización con la tasa de refresco de tu monitor (evita el temblor)
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
